@@ -24,6 +24,7 @@ public class UrlController {
             @PathVariable String shortUrl,
             HttpServletResponse response
     ) throws IOException {
+        System.out.println("shortUrl = " + shortUrl);
         // This should come from the service layer
         String originalUrl = urlService.getOriginalUrl(shortUrl);
         // Check the response

@@ -19,6 +19,9 @@ public class UrlService {
         String originalUrl = redisTemplate.opsForValue().get(shortUrl);
         if(originalUrl == null) {
             originalUrl = urlRepository.findByShortUrl(shortUrl).getLongUrl();
+            if( originalUrl == null) {
+                return null;
+            }
             redisTemplate.opsForValue().set(shortUrl, originalUrl);
         }
         return originalUrl;

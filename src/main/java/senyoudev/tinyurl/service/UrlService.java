@@ -58,7 +58,17 @@ public class UrlService {
             redisTemplate.opsForValue().set(shortUrl, originalUrl);
             logger.info("Saved URL mapping to cache: {} -> {}", shortUrl, originalUrl);
         }
+        incrementHitCount(urlRepository.findByShortUrl(shortUrl));
         return originalUrl;
+    }
+
+    private long incrementHitCount(Url url) {
+        if(url == null) {
+            return -1;
+        }
+        url.setHitCount(url.getHitCount() + 1);
+        urlRepository.save(url);
+        return url.getHitCount();
     }
 
     private long generateUniqueId(String originalUrl) {

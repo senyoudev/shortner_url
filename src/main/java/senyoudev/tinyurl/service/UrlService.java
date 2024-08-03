@@ -62,13 +62,12 @@ public class UrlService {
         return originalUrl;
     }
 
-    private long incrementHitCount(Url url) {
-        if(url == null) {
-            return -1;
+    private void incrementHitCount(Url url) {
+        if(url != null) {
+            logger.debug("Incrementing hit count for URL: {}", url);
+            url.setHitCount(url.getHitCount() + 1);
+            urlRepository.save(url);
         }
-        url.setHitCount(url.getHitCount() + 1);
-        urlRepository.save(url);
-        return url.getHitCount();
     }
 
     private long generateUniqueId(String originalUrl) {

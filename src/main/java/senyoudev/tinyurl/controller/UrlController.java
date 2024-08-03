@@ -4,10 +4,8 @@ package senyoudev.tinyurl.controller;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import senyoudev.tinyurl.dto.ShortUrlResponse;
 import senyoudev.tinyurl.service.UrlService;
 
 import java.io.IOException;
@@ -18,6 +16,14 @@ import java.io.IOException;
 public class UrlController {
 
     private final UrlService urlService;
+
+    @PostMapping("/shorten")
+    public ResponseEntity<ShortUrlResponse> shortenUrl(
+            @RequestParam String originalUrl
+    ) {
+        String shortUrl = urlService.shortenUrl(originalUrl);
+        return ResponseEntity.ok(new ShortUrlResponse(shortUrl));
+    }
 
     @GetMapping("/{shortUrl}")
     public ResponseEntity<Void> redirectUrl(

@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import senyoudev.tinyurl.dto.ShortUrlResponse;
+import senyoudev.tinyurl.dto.UrlRequest;
 import senyoudev.tinyurl.service.UrlService;
 
 import java.io.IOException;
@@ -19,9 +20,9 @@ public class UrlController {
 
     @PostMapping("/shorten")
     public ResponseEntity<ShortUrlResponse> shortenUrl(
-            @RequestParam String originalUrl
+            @RequestBody UrlRequest request
     ) {
-        String shortUrl = urlService.shortenUrl(originalUrl);
+        String shortUrl = urlService.shortenUrl(request.originalUrl());
         return ResponseEntity.ok(new ShortUrlResponse(shortUrl));
     }
 

@@ -1,6 +1,7 @@
 # Tiny URL Service
 
-A Spring Boot application for shortening URLs using Redis for caching and PostgreSQL for persistence.
+A Spring Boot application for shortening URLs using Redis for caching and PostgreSQL for persistence. I was building it
+just for fun.
 
 ## Table of Contents
 
@@ -105,3 +106,8 @@ Example:
 ```bash
 curl -L http://localhost:8080/api/url/abc123
 ```
+
+
+### Summary
+
+This README file provides a comprehensive guide to setting up, configuring, and using your Tiny URL service. It includes sections for an overview, features, architecture, prerequisites, setup instructions, usage examples, API endpoints, configuration, logging, contributing, and license information. Adjust the details as needed to fit your specific project requirements.
